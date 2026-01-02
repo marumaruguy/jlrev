@@ -1,0 +1,23 @@
+{
+  "name": "jlrev",
+  "version": "1.0.0",
+  "description": "Monorepo for the JLPT revision",
+  "homepage": "https://github.com/pakyinwww/jlrev#readme",
+  "bugs": {
+    "url": "https://github.com/pakyinwww/jlrev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pakyinwww/jlrev.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
