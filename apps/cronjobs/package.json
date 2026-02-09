@@ -1,0 +1,9 @@
+{
+    "name": "cronjobs",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "echo 'Start cronjobs dev'",
+        "build": "echo 'Build cronjobs'"
+    }
+}
