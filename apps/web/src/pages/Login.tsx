@@ -1,6 +1,31 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function Login() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // Check if auth_token cookie exists and has not expired
+        // document.cookie only returns non-expired cookies
+        const hasAuthToken = document.cookie
+            .split(';')
+            .some((item) => item.trim().startsWith('auth_token='));
+
+        if (hasAuthToken) {
+            navigate('/dashboard');
+        }
+    }, [navigate]);
+
+    const handleLogin = () => {
+        // Set cookie with 24 hour expiration
+        const date = new Date();
+        date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = "auth_token=valid_token; " + expires + "; path=/";
+
+        navigate('/dashboard');
+    };
+
     return (
         <div style={{
             display: 'flex',
@@ -45,6 +70,7 @@ export default function Login() {
                         cursor: 'pointer',
                         transition: 'background-color 0.2s',
                     }}
+                        onClick={handleLogin}
                     >
                         <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style={{ width: '1.25rem', height: '1.25rem', marginRight: '0.5rem' }} />
                         Sign in with Google
@@ -63,7 +89,9 @@ export default function Login() {
                         fontWeight: '500',
                         cursor: 'pointer',
                         transition: 'background-color 0.2s',
-                    }}>
+                    }}
+                        onClick={handleLogin}
+                    >
                         <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" style={{ width: '1.25rem', height: '1.25rem', marginRight: '0.5rem', filter: 'invert(1)' }} />
                         Sign in with GitHub
                     </button>
