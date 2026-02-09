@@ -2,6 +2,7 @@
   "name": "jlrev",
   "version": "1.0.0",
   "description": "Monorepo for the JLPT revision",
+  "private": true,
   "homepage": "https://github.com/pakyinwww/jlrev#readme",
   "bugs": {
     "url": "https://github.com/pakyinwww/jlrev/issues"
@@ -12,12 +13,19 @@
   },
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "turbo": "latest",
+    "prettier": "latest"
+  },
+  "packageManager": "npm@10.0.0"
 }
