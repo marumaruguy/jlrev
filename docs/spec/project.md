@@ -9,3 +9,15 @@
 *   **Conventions:**
     *   Shared types between Backend and Frontend (likely using zod).
     *   Unified linting rules.
+
+## 3. Sub Repository Structure
+*   app/
+    root of the monorepo
+*   app/mobile/
+*   app/web/
+*   app/apis/
+*   app/cronjobs/
+*   app/databases/
+*   app/shared/
+    shared code between all subrepos
+
