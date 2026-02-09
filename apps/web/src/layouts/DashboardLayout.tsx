@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './DashboardLayout.css';
 
 interface DashboardLayoutProps {
@@ -9,6 +9,14 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleLogout = (e: React.MouseEvent) => {
+        e.preventDefault();
+        document.cookie = "auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        setIsSidebarOpen(false);
+        navigate('/login');
+    };
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -58,9 +66,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                         Settings
                     </Link>
                     <div style={{ marginTop: 'auto' }}>
-                        <Link to="/" className="nav-link" onClick={closeSidebar}>
+                        <a href="/" className="nav-link" onClick={handleLogout}>
                             Logout
-                        </Link>
+                        </a>
                     </div>
                 </nav>
             </aside>
